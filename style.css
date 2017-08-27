@@ -103,6 +103,21 @@ body {
     font-size: 30px;
 }
 
+input {
+    position: absolute;
+    width: 60px;
+    left: 47%;
+    text-align: center; 
+    color: #555;
+    font-family: Lato;
+    font-size: 14px;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-weight: 200;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+
 button {
     position: absolute;
     width: 200px;
@@ -118,6 +133,7 @@ button {
     font-weight: 300;
     transition: background-color 0.3s, color 0.3s;
 }
+
 
 button:hover { font-weight: 600; }
 button:hover i { margin-right: 20px; }
@@ -137,6 +153,7 @@ i {
     transition: margin 0.3s;
 }
 
+.input-new { top: 90px;}
 .btn-new { top: 45px;}
 .btn-roll { top: 403px;}
 .btn-hold { top: 467px;}
