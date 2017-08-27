@@ -10,7 +10,7 @@ GAME RULES:
 */
 
 var scores, roundScore, prevDice, activePlayer, gamePlaying, winnerScore;
-var diceDOM = document.querySelector('.dice');
+var diceDOM = document.querySelector('.dice-0');
 init();
 
 document.querySelector('.input-new').addEventListener('change', function() {
