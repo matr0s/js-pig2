@@ -9,9 +9,14 @@ GAME RULES:
 
 */
 
-var scores, roundScore, prevDice, activePlayer, gamePlaying;
+var scores, roundScore, prevDice, activePlayer, gamePlaying, winnerScore;
 var diceDOM = document.querySelector('.dice');
 init();
+
+document.querySelector('.input-new').addEventListener('change', function() {
+	// winnerScore update
+	winnerScore = document.querySelector('.input-new').value;
+});
 
 document.querySelector('.btn-roll').addEventListener('click', function() {
 	if (gamePlaying) {
@@ -21,16 +26,16 @@ document.querySelector('.btn-roll').addEventListener('click', function() {
 		// 2. Display result
 		diceDOM.style.display = 'block';
 		diceDOM.src = 'dice-' + dice + '.png';
-if (dice === 6 && prevDice === 6) {
-	// Total score to zero
-	scores[activePlayer] = document.querySelector('#score-' + activePlayer).textContent = 0;
-	// Next player
-	nextPlayer();
-} else if(dice !== 1) {
+	if (dice === 6 && prevDice === 6) {
+		// Total score to zero
+		scores[activePlayer] = document.querySelector('#score-' + activePlayer).textContent = 0;
+		// Next player
+		nextPlayer();
+	} else if(dice !== 1) {
 		prevDice = dice;
 		roundScore = document.querySelector('#current-' + activePlayer).textContent = roundScore + dice;
 	} else {
-	nextPlayer();
+		nextPlayer();
 	}
 }
 });
@@ -38,7 +43,7 @@ if (dice === 6 && prevDice === 6) {
 document.querySelector('.btn-hold').addEventListener('click', function() {
 	if (gamePlaying) {
 		scores[activePlayer] = document.querySelector('#score-' + activePlayer).textContent = scores[activePlayer] + roundScore;
-		if (scores[activePlayer] >= 100) {
+		if (scores[activePlayer] >= winnerScore) {
 		document.querySelector('#name-' + activePlayer).textContent = 'WINNER!'
 		diceDOM.style.display = 'none';
 		document.querySelector('.player-' + activePlayer + '-panel').classList.add('winner');	
@@ -67,6 +72,7 @@ function init() {
 	activePlayer = 0;
 	diceDOM.style.display = 'none';
 	gamePlaying = true;
+	winnerScore = document.querySelector('.input-new').value;
 	document.getElementById('score-0').textContent = 0;
 	document.getElementById('score-1').textContent = 0;
 	document.getElementById('current-0').textContent = 0;
